@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load modal %}
+{% block title %} lists {% endblock %}
+{% block primary %}
+
+    {% if user.is_authenticated %}
+        {% for LIST in LIST_list %}
+            <div class="col-lg-4 margin-top">
+
+                <div class="panel panel-default">
+                    <input id="LIST_time_{{ LIST.id }}" type="hidden"  value="{{ LIST.time }}">
+                    <div class="panel-heading">
+                        <a href="#" data-toggle="modal" data-href="{% url 'lists:view' LIST.id %}"
+                           data-target="#ajax-modal">
+                            <h3 class="panel-title">{{ LIST.name }} - ({{ LIST.pretty_print }})</h3>
+                        </a>
+                    </div>
+
+
+                    <div class="panel-body">
+                        {{ LIST.description }}
+                    </div>
+                </div>
+
+            </div>
+
+        {% empty %}
+            <div class="col-lg-4">
+                <h2>No lists found</h2>
+
+                <p>You'd better add some</p>
+
+                <p><a class="btn btn-primary" data-toggle="modal" data-target="#ajax-modal" href="#" data-href="{% url 'lists:add' %} ">Add some lists! &raquo;</a></p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="jumbotron">
+            <h1>Welcome to Socialist!</h1>
+
+            <p>Please register in order to add new lists</p>
+
+            <p><a class="btn btn-success margin-right" href="{% url 'user:edit' user_id='None' %}?next={{ request.path }}">Register</a><a  class="btn btn-twitter" href="/accounts/login/twitter/"><i class="fa fa-twitter"></i> | Connect with twitter</a></p>
+        </div>
+
+    {% endif %}
+
+{% endblock %}

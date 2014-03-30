@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block title %}{{ form.instance.first_name }} {{ form.instance.last_name|default_if_none:"New User" }}{% endblock %}
+
+{% block primary %}
+    {% load url from future %}
+    <div class="col-md-4">
+        <fieldset>
+            <legend>User details</legend>
+            <form action="{% url 'user:save' user_id=user.id %}" method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group">
+                        <label>{{ field.label }}</label>
+                        {{ field|add_class:"form-control" }}
+                    </div>
+                {% endfor %}
+                {% for field in profileForm %}
+                    <div class="form-group">
+                        <label>{{ field.label }}</label>
+                        {{ field|add_class:"form-control" }}
+                    </div>
+                {% endfor %}
+                <input class="btn btn-primary" type="submit" value="Submit"/>
+            </form>
+            <script src="{{ STATIC_URL }}js/slider.js"></script>
+
+        </fieldset>
+    </div>
+{% endblock %}

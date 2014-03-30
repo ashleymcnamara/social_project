@@ -1,0 +1,53 @@
+body {
+    padding-top: 60px;
+    font-family: "Droid Sans";
+}
+
+@media (max-width: 979px) {
+    body {
+        padding-top: 115px;
+    }
+}
+
+@media (max-width: 750px) {
+    body {
+        padding-top: 60px;
+    }
+}
+
+#slider {
+    margin-bottom: 10px;
+}
+
+#rangeForm label {
+    color: #999999;
+}
+
+.margin-top {
+    margin-top: 10px;
+}
+
+.margin-right {
+    margin-right: 10px;
+}
+
+.margin-left {
+    margin-left: 10px;
+}
+
+.margin-bottom {
+    margin-bottom: 10px;
+}
+
+/*.navbar-nav > li > a {*/
+    /*line-height: 32px;*/
+
+/*}*/
+
+/*.navbar-brand {*/
+    /*line-height: 32px;*/
+/*}*/
+
+.navbar a {
+    text-transform: uppercase;
+}

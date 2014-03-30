@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+{% load modal %}
+{% load filters %}
+<head>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
+    <link href="{{ STATIC_URL }}bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="{{ STATIC_URL }}css/bootstrap-modal.css" rel="stylesheet" media="screen">
+    <link href="{{ STATIC_URL }}css/bootstrap-modal-bs3patch.css" rel="stylesheet" media="screen">
+    <link href="{{ STATIC_URL }}css/social-buttons.css" rel="stylesheet" media="screen">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ STATIC_URL }}sidr-package-1.2.1/stylesheets/jquery.sidr.dark.css">
+    <link href="{{ STATIC_URL }}css/style.css" rel="stylesheet" media="screen">
+
+    {#Fonts#}
+    <link href="//fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet" type="text/css">
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+{#      <script src="{{ STATIC_URL }}bootstrap-3.0.0/assets/js/html5shiv.js"></script>#}
+{#      <script src="{{ STATIC_URL }}bootstrap-3.0.0/assets/js/respond.min.js"></script>#}
+{#    <![endif]-->#}
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+
+    <title>Socialist - {% block title %}{% endblock %}
+
+    </title>
+</head>
+<body>
+
+
+<div class="container">
+
+<div class="navbar  navbar-default" role="navigation">
+
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'lists:list' %}">Socialist</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            {% if user.is_authenticated %}
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a id="filter">
+                            <span class="glyphicon glyphicon-filter"></span> FILTER
+                        </a>
+                    </li>
+                    <li><a href="#" data-toggle="modal" data-target="#ajax-modal" data-href="{% url 'lists:random' %}">
+                       <span class="glyphicon glyphicon-random"></span> Pick one for me!</a></li>
+
+                    <li>
+                        <a href="#" data-href="{% url 'lists:add' %}" data-toggle="modal" data-target="#ajax-modal">
+                        <span class="glyphicon glyphicon-plus"></span> Add LIST</a>
+                    </li>
+
+                </ul>
+            {% endif %}
+            {% include "user/auth.html" %}
+
+        </div>
+        <!--/.navbar-collapse -->
+    </div>
+</div>
+    <div class="row">
+        <div id="messages">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} fade in">
+                        <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        {% block primary %}
+
+
+        {% endblock %}
+
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>&copy; Ashley McNamara 2014</p>
+    </footer>
+</div>
+<!-- /container -->
+
+{#<script src="{{ STATIC_URL }}js/slider.js"></script>#}
+{% menu request %}
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
+<script src="{{ STATIC_URL }}js/bootstrap-modalmanager.js"></script>
+<script src="{{ STATIC_URL }}js/bootstrap-modal.js"></script>
+<script src="{{ STATIC_URL }}/js/rangeSlider.js"></script>
+<script src="{{ STATIC_URL }}/js/updateFilters.js"></script>
+<script src="{{ STATIC_URL }}sidr-package-1.2.1/jquery.sidr.min.js"></script>
+<script src="{{ STATIC_URL }}js/jquery_cookie.js"></script>
+
+<script>
+
+    $('#filter').sidr({
+        name: 'filters',
+        source:'#filter_header, #filter_menu'
+    });
+
+
+</script>
+
+</body>
+{% ajax_modal %}
+</html>

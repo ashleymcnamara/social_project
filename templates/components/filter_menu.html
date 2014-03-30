@@ -1,0 +1,25 @@
+<header id="filter_header" style="display: none">
+    <h3>Filters</h3>
+</header>
+<div id="filter_menu" style="display: none">
+{#    <form id="rangeForm" class="navbar-form" action="{% url 'lists:list' %}" method="post">#}
+{#        {% csrf_token %}#}
+
+{#        <div class="form-group">#}
+            <p>
+                <label for="amount">Time range:</label>
+                <input type="text" name="range" id="amount"
+                       style="border: 0; color: #f6931f; font-weight: bold;"/>
+            </p>
+
+            <div id="slider-range"></div>
+
+{#        </div>#}
+
+{#    </form>#}
+</div>
+<script>
+    $(function () {
+        slider_range(0, 1440);
+    });
+</script>
