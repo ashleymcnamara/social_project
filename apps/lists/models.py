@@ -12,7 +12,7 @@ class LIST(models.Model):
     completed = models.NullBooleanField()
 
 
-    def pretty_print(self):
+    def print_time(self):
         minutes = self.time
         minutes_in_day = 1440
         minutes_in_hour = 60

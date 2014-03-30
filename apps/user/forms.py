@@ -19,7 +19,7 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
 
-    def clean_avatar(self):
+    def user_avatar(self):
         avatar = self.cleaned_data['avatar']
 
         try:
