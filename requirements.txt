@@ -9,7 +9,7 @@ Pygments==1.6
 Scrapy==0.22.2
 South==0.8.2
 Sphinx==1.2.1
-Twisted==12.2.0
+Twisted==19.7.0
 altgraph==0.10.1
 amqp==1.0.13
 anyjson==0.3.3
