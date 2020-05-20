@@ -63,7 +63,7 @@ greenlet==0.4.2
 gunicorn==0.17.4
 html2text==3.200.3
 httpagentparser==1.2.2
-httplib2==0.8
+httplib2==0.18.0
 kombu==2.5.16
 lockfile==0.9.1
 logan==0.5.10
